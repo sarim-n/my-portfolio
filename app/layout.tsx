@@ -1,33 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Sarim Ahmed N | AI & Data Science Portfolio",
-  description: "CS Student and Developer specializing in Machine Learning, Computer Vision (Turf AI), and Automated Systems.",
+  description: "Computer Science student specializing in Machine Learning, Computer Vision, and Automated Systems.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <body>{children}</body>
     </html>
   );
 }
