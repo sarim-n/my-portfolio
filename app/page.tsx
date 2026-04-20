@@ -1,21 +1,29 @@
+"use client";
+
+import React from 'react';
+
 const PROJECTS = [
   {
     title: "Turf AI",
     description: "An automated refereeing system using Computer Vision to track ball movement and player positioning. Reduces human error in high-speed sports environments.",
     tags: ["Computer Vision", "OpenCV", "AI"],
-    link: "#"
+    link: "https://github.com/sarim-n",
+    // Updated to a high-res sports technology image
+    image: "https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?q=80&w=1000&auto=format&fit=crop"
   },
   {
     title: "Domain Prediction Model",
     description: "Machine Learning model built to predict domain categories based on feature sets. Focused on high-accuracy classification.",
     tags: ["Python", "Scikit-Learn", "Data Science"],
-    link: "#"
+    link: "https://github.com/sarim-n",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
   },
   {
     title: "Local Shop E-commerce Bot",
     description: "Automated system for small shops to manage online sales and inventory, bridging the gap for local vendors.",
     tags: ["Next.js", "Automation", "Node.js"],
-    link: "#"
+    link: "https://github.com/sarim-n",
+    image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=1000&auto=format&fit=crop"
   }
 ];
 
@@ -29,8 +37,9 @@ export default function Home() {
         <div className="font-bold text-xl tracking-tighter hover:text-blue-600 cursor-pointer transition-colors">
           SARIM.DEV
         </div>
-        <div className="space-x-8 text-sm font-medium">
+        <div className="flex items-center space-x-6 text-sm font-medium">
           <a href="#projects" className="hover:text-blue-600 transition">Projects</a>
+          <a href="https://github.com/sarim-n" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition">GitHub</a>
           <a href="mailto:your-email@example.com" className="bg-slate-900 text-white px-4 py-2 rounded-full hover:bg-slate-800 transition shadow-sm">
             Contact
           </a>
@@ -63,7 +72,7 @@ export default function Home() {
         <div className="flex flex-wrap gap-4 items-center">
           <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mr-4">Tech Stack</span>
           {SKILLS.map((skill) => (
-            <div key={skill} className="px-4 py-2 bg-slate-50 border border-slate-100 rounded-lg text-sm font-medium text-slate-700 hover:border-blue-200 transition-colors">
+            <div key={skill} className="px-4 py-2 bg-slate-50 border border-slate-100 rounded-lg text-sm font-medium text-slate-700 hover:border-blue-200 transition-colors cursor-default">
               {skill}
             </div>
           ))}
@@ -81,23 +90,37 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {PROJECTS.map((project, index) => (
-            <div key={index} className="group p-8 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 bg-white">
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map(tag => (
-                  <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-blue-50 text-blue-600 rounded">
-                    {tag}
-                  </span>
-                ))}
+            <div key={index} className="group overflow-hidden rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 bg-white">
+              {/* Project Image with Fallback */}
+              <div className="h-52 w-full bg-slate-100 overflow-hidden relative">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://placehold.co/600x400/e2e8f0/475569?text=Project+Preview";
+                  }}
+                />
               </div>
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-slate-600 leading-relaxed mb-6">
-                {project.description}
-              </p>
-              <a href={project.link} className="inline-flex items-center font-semibold text-blue-600 hover:underline">
-                View Project Details <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </a>
+
+              <div className="p-8">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-blue-50 text-blue-600 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-slate-600 leading-relaxed mb-6 text-sm">
+                  {project.description}
+                </p>
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center font-semibold text-blue-600 hover:underline">
+                  View Source Code <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
             </div>
           ))}
         </div>
